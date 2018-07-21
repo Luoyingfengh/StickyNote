@@ -1,0 +1,90 @@
+﻿<Page
+    x:Class="StickyNote.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StickyNote"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  Height="300" Width="500">
+
+        <Page.Resources>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Width" Value="50" />
+            </Style>
+            <Style x:Key="ItemBoxTextBlock" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="CharacterSpacing" Value="35"/>
+                <Setter Property="FontFamily" Value="Arial"/>
+            </Style>
+        </Page.Resources>
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <CommandBar  Name="MyCommandBar" Opening="CommandBar_Opening"  Closing="CommandBar_Closing"  >
+            <AppBarButton Name="PinButton" Style="{StaticResource ButtonStyle}" Content="&#xE840;"  />
+
+            <AppBarSeparator/>
+            <AppBarButton Style="{StaticResource ButtonStyle}" Content="&#xE19B;" Click="BoldButton_Click" ToolTipService.ToolTip="Bold"  />
+            <AppBarButton x:Name="italicButton" Style="{StaticResource ButtonStyle}"  Content="&#xE199;" Click="ItalicButton_Click"   ToolTipService.ToolTip="Italic" />
+            <AppBarButton x:Name="underlineButton"  Style="{StaticResource ButtonStyle}" Content="&#xE19A;" Click="UnderlineButton_Click" ToolTipService.ToolTip="Underline"/>
+            <AppBarSeparator/>
+            <AppBarButton Name ="AddButton"   Style="{StaticResource ButtonStyle}" Content="&#xE710;" Click="AddButton_Click" />
+            <AppBarButton Name ="DeleteButton"   Style="{StaticResource ButtonStyle}" Content="&#xE107;" Click="AddButton_Click" />
+
+            <CommandBar.SecondaryCommands >
+                <AppBarButton    Label="Theme Color"   Icon="Play">
+                    <AppBarButton.Flyout>
+                        <MenuFlyout >
+                            <MenuFlyoutItem Text="pink" Background="Pink" Click="ColorChoose_Click"/>
+                            <MenuFlyoutItem Text="green" Background="Green" Click="ColorChoose_Click"/>
+                            <MenuFlyoutItem Text="orange"  Background="Orange" Click="ColorChoose_Click"/>
+                            <MenuFlyoutItem Text="yellow"  Background="Yellow" Click="ColorChoose_Click"/>
+                            <MenuFlyoutItem Text="bule" Background="AliceBlue" Click="ColorChoose_Click"/>
+                            <MenuFlyoutItem Text="black" Background="MidnightBlue" Click="ColorChoose_Click"/>
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+                <AppBarButton  Label="All Note"  Icon="Page2"  Click="SetButton_Click" />
+                <AppBarButton  Label="Setting"  Icon="Setting"  Click="SetButton_Click" />
+            </CommandBar.SecondaryCommands>
+
+            <CommandBar.Content>
+                <AppBarButton Name ="AllNoteButton"  Style="{StaticResource ButtonStyle}" Content="&#xE76C;" Click="AllNoteButton_Click"/>
+            </CommandBar.Content>
+        </CommandBar>
+        <SplitView Name="AllNoteSpiltView" IsPaneOpen="False" Grid.Row="1" CompactPaneLength="0" 
+                   OpenPaneLength="100" DisplayMode="Overlay"  PanePlacement="Left">
+            <SplitView.Pane>
+                <Grid Name="SplitViewPane">
+                    <StackPanel Orientation="Vertical">
+                        <ListBox Name="MyListBox">
+                            <ListBoxItem>
+                                <TextBlock Style="{StaticResource ItemBoxTextBlock}" Text="Note one"/>
+                            </ListBoxItem>
+                            <ListBoxItem>
+                                <TextBlock Style="{StaticResource ItemBoxTextBlock}" Text="Note two"/>
+                            </ListBoxItem>
+                            <ListBoxItem>
+                                <TextBlock Style="{StaticResource ItemBoxTextBlock}" Text="Note three"/>
+                            </ListBoxItem>
+                        </ListBox>
+                    </StackPanel>
+                </Grid>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Frame Name="FunctionPage">
+                    <RichEditBox x:Name="editor" BorderThickness="1.5" BorderBrush="Gray" IsSpellCheckEnabled="False"  IsColorFontEnabled="True" />
+                </Frame>
+            </SplitView.Content>
+           
+                
+        </SplitView>
+    </Grid>
+</Page>
