@@ -119,6 +119,11 @@ namespace StickyNote
             MyListBox.Background = s.Background;
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
         }
+
+        private void AllButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AllNotePage));
+        }
     }
 }
 

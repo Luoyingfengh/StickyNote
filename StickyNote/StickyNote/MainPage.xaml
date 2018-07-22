@@ -51,7 +51,7 @@
                         </MenuFlyout>
                     </AppBarButton.Flyout>
                 </AppBarButton>
-                <AppBarButton  Label="All Note"  Icon="Page2"  Click="SetButton_Click" />
+                <AppBarButton  Label="All Note"  Icon="Page2"  Click="AllButton_Click" />
                 <AppBarButton  Label="Setting"  Icon="Setting"  Click="SetButton_Click" />
             </CommandBar.SecondaryCommands>
 
